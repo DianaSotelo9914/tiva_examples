@@ -7,9 +7,10 @@
  * Los pines se definen para usar los leds y botones:
  *      LEDS: F0, F4, N0, N1
  *      BOTONES: J0, J1
- * Cuando se pulsa (y se suelta)un botÛn, cambia de estado,
- * entre los definidos en la matriz LED. El primer botÛn incrementa el estado
+ * Cuando se pulsa (y se suelta)un bot√≥n, cambia de estado,
+ * entre los definidos en la matriz LED. El primer bot√≥n incrementa el estado
  * y el segundo lo decrementa. Al llegar al final, se satura.
+ * Be Radiant.
  ************************************************************/
 
 
@@ -44,7 +45,7 @@ int main(void)
     //Fijar velocidad a 120MHz
     reloj=SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ | SYSCTL_OSC_MAIN | SYSCTL_USE_PLL | SYSCTL_CFG_VCO_480), 120000000);
 
-    //Habilitar los perifÈricos implicados: GPIOF, J, N
+    //Habilitar los perif√©ricos implicados: GPIOF, J, N
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ);
     SysCtlPeripheralEnable(SYSCTL_PERIPH_GPION);
@@ -62,9 +63,9 @@ int main(void)
             SysCtlDelay(10*MSEC);
             while(!(GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_0)));  //Debouncing...
             SysCtlDelay(10*MSEC);
-            estado++; if(estado==MaxEst) estado=MaxEst-1;       //Incrementa el estado. Si m·ximo, satura
+            estado++; if(estado==MaxEst) estado=MaxEst-1;       //Incrementa el estado. Si m√°ximo, satura
         }
-        if( !(GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_1))){        //Si se aprieta el botÛn 2
+        if( !(GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_1))){        //Si se aprieta el bot√≥n 2
             SysCtlDelay(10*MSEC);
             while( !(GPIOPinRead(GPIO_PORTJ_BASE,GPIO_PIN_1))); //Debouncing..
             SysCtlDelay(10*MSEC);
